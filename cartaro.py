@@ -82,15 +82,17 @@ def _wrap_line(text, width, draw, font):
     return lines
 
 
-def memoize(f):
+def memo_last(f):
     cache= {}
     def memf(*x):
         if x not in cache:
+            cache.clear()
             cache[x] = f(*x)
+            return cache[x]
         return cache[x]
     return memf
 
-@memoize
+@memo_last
 def create_image(card):
     def mm_to_pixel(mm):
         dpi = 72
