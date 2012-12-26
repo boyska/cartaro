@@ -1,73 +1,45 @@
-Sorry, this is italian only atm
-The code, instead, is english, and it should speak by itself.
-Especially, have a look, at `bang.py`, that is the only example I did
 
 Scopo
 ======
 
-Creare mazzi di carte in fretta.
-Configurazione semplice.
-Crea tante immagini singole.
-Poi forse crea pure i pdf in cui cerca di metterne tante insieme
+Create card decks quickly.
+Configuration is easy (for me): it's Python language, but you don't need to
+understand it or to know how to program to be able to use it.
+
+Especially, have a look, at `bang.py`, if you want to see how easy it is
 
 Uso
 ====
 
-Si configurano le carte e i mazzi, quindi si richiede una stampa.
-La modalità di stampa più semplice è generare tante png, una per immagine.
-(quindi ci sono i duplicati).
-
-Disegnare
-==========
-
-In tutti i casi l'allineamento degli oggetti sta a noi!
-
-PIL
-----
-
-Con PIL lo strumento principale è ImageDraw.text
-Centrare orizzontalmente si può con
-http://stackoverflow.com/questions/1970807/center-middle-align-text-with-pil
-
-ImageMagick
-------------
-
-Interfaccia più oscura, ma, almeno a linea di comando, il supporto per il testo
-è più esteso: ( http://www.imagemagick.org/Usage/text/ )
-
-    convert -background lightblue -fill blue  -font Candice \
-            -size 165x70  -pointsize 24  -gravity center \
-            label:Anthony     label_gravity.gif
-
+After the configuration (see below), you'll find yourself with a bunch of
+`.jpeg`s. They are optimized for easiness of print, so if you need to print the
+same card 4 time, you'll have four identical JPEGs.
 
 Configurazione
 ===============
 
-Si definisce una carta. Ha vari parametri (bgcolor, bordercolor, borderstyle)
-tra cui i testi.
+You can defina a card. A card has lot of parameters (bgcolor, bordercolor) and
+texts. Texts are special parameters, see below
 
-Si possono ereditare carte, e crearne di nuove. In questo modo si può creare
-una carta "base" e varie altre modifiche.
+You can "inherit" cards, and create new ones. This resembles how cards are
+defined in games, and make it easy to create new ones
 
-Si definisce poi quante stampare di ogni carta.
+Finally, you define how many cards you should "print" for each one.
 
 Testi
 ------
 
-I testi sono speciali, perché sono attributi di tipo `text\d+` con relativi
-`text\d+_font` In questo modo le funzioni di stampa ci possono iterare sopra e
-trasformare tutto in "stringhe ricche" che hanno un font
+Texts are special attributes: they are like `text1`, `text2`...
+for each one you can have `text1_size` or `text2_bgcolor`. They define
+attributes for texts
 
 Attributi
 ---------
 
-Per semplicità si devono poter mischiare attributi di classe e d'istanza.
-Non deve essere necessario definire un costruttore, se non si vogliono gestire
-parametri.
-Può essere utile una funzione `.set(**kwargs)` con cui settare tanti parametri
-insieme.
+You can mix class attributes and instance ones.
+There's no need to define a constructor, if you don't feel so.
 
-Esempio (bang)!
+Example (bang)!
 -------
 
 	class Carta(BaseCard):
