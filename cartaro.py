@@ -17,7 +17,6 @@ class RichText(dict):
         self['margin_up'] = self.__class__.default_margin_up
         self['interspacing'] = self.__class__.default_interspacing
         self['bgcolor'] = self.__class__.default_bgcolor
-        print self
 
     def __getattr__(self, key):
         return self[key]
@@ -61,7 +60,7 @@ def create_images(l, directory='.'):
         os.mkdir(directory)
     elif not os.path.isdir(directory):
         raise IOError('not a valid path: %s' % directory)
-    for card, i in zip(l, count(1)):
+    for card, i in zip(sorted(l), count(1)):
         img = create_image(card)
         img.save(os.path.join(directory, 'card-%03d.jpeg' % i), 'JPEG', dpi=(72,72))
 
@@ -83,8 +82,15 @@ def _wrap_line(text, width, draw, font):
     return lines
 
 
+def memoize(f):
+    cache= {}
+    def memf(*x):
+        if x not in cache:
+            cache[x] = f(*x)
+        return cache[x]
+    return memf
 
-
+@memoize
 def create_image(card):
     def mm_to_pixel(mm):
         dpi = 72
