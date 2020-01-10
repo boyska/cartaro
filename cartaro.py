@@ -32,6 +32,7 @@ class BaseCard(object):
     bordercolor = None
     interspacing = 1
     fontsize = 24
+    # TODO: support "center all texts"
 
     def __init__(self):
         pass

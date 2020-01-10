@@ -6,7 +6,9 @@ https://no-me.space/2029-semantic-guerriglia/
 from cartaro import BaseCard, create_images
 
 class Carta(BaseCard):
-    text1_size=45
+    text1_size=70
+    text1_margin_up = 7.5
+    text1_margin_down = 0
     fontsize=40
     bordercolor='white'
     max_width=40 #mm
