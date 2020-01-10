@@ -3,7 +3,7 @@ Scopo
 ======
 
 Create card decks quickly.
-Configuration is easy (for me): it's Python language, but you don't need to
+Configuration is easy (for me): it's Python2 language, but you don't need to
 understand it or to know how to program to be able to use it.
 
 Especially, have a look, at `bang.py`, if you want to see how easy it is

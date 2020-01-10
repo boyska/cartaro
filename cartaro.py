@@ -1,4 +1,5 @@
 import os, os.path
+import tempfile
 import re
 from itertools import izip, count
 from copy import copy
@@ -63,14 +64,40 @@ class BaseCard(object):
         return listtexts
 
 
-def create_images(l, directory="."):
+def create_pdf(l, fname="out.pdf"):
+    from fpdf import FPDF
+
+    pdf = FPDF(unit="mm", format="A4", orientation="P")
+    pdf.add_page()
+    last_x = 0  # mm
+    last_y = 0
+    for i, card in enumerate(sorted(l), 1):
+        img = create_image(card)
+        with tempfile.NamedTemporaryFile(suffix=".png") as temp_f:
+            img.save(temp_f.name, "PNG", dpi=(72, 72))
+            if last_x + card.max_width >= pdf.w:
+                last_x = 0
+                last_y += card.max_heigth
+            if last_y + card.max_heigth >= pdf.h:
+                pdf.add_page()
+                last_x = 0
+                last_y = 0
+            pdf.image(temp_f.name, x=last_x, y=last_y, w=card.max_width)
+        last_x += card.max_width
+    pdf.output("out.pdf")
+
+
+def create_images(l, directory=".", prefix="card-"):
     if not os.path.exists(directory):
         os.mkdir(directory)
     elif not os.path.isdir(directory):
         raise IOError("not a valid path: %s" % directory)
-    for card, i in zip(sorted(l), count(1)):
+
+    for i, card in enumerate(sorted(l), 1):
         img = create_image(card)
-        img.save(os.path.join(directory, "card-%03d.png" % i), "PNG", dpi=(72, 72))
+        card_prefix = getattr(card, "file_prefix", prefix)
+        fname = os.path.join(directory, "%s%03d.png" % (card_prefix, i))
+        img.save(fname, "PNG", dpi=(72, 72))
 
 
 def _wrap_line(text, width, draw, font):
