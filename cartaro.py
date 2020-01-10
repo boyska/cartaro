@@ -62,7 +62,7 @@ def create_images(l, directory='.'):
         raise IOError('not a valid path: %s' % directory)
     for card, i in zip(sorted(l), count(1)):
         img = create_image(card)
-        img.save(os.path.join(directory, 'card-%03d.jpeg' % i), 'JPEG', dpi=(72,72))
+        img.save(os.path.join(directory, 'card-%03d.png' % i), 'PNG', dpi=(72,72))
 
 def _wrap_line(text, width, draw, font):
     '''Return a list of lines, each one fits in width'''
