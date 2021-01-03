@@ -1,6 +1,6 @@
 """An example implementation for the Bang! card game"""
 
-from cartaro import *
+from cartaro import BaseCard, RichText, create_images
 
 
 class Carta(BaseCard):
