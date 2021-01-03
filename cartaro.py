@@ -84,8 +84,15 @@ class BaseCard(object):
             listtexts[index] = value
         return listtexts
 
+    def post_rendering(self, img, bwidth=0, last=0):
+        return img
+
+    def get_font_rich(self, num, rich):
+        font = ImageFont.truetype("serif.ttf", rich.size if "size" in rich else self.fontsize)
+        return font
+
     @memo_last
-    def create_image(card):
+    def create_image(self):
         def mm_to_pixel(mm):
             dpi = 72
             dpcm = dpi / 2.54
@@ -93,27 +100,26 @@ class BaseCard(object):
 
         img = Image.new(
             "RGBA",
-            (mm_to_pixel(card.max_width), mm_to_pixel(card.max_heigth)),
-            card.bgcolor,
+            (mm_to_pixel(self.max_width), mm_to_pixel(self.max_heigth)),
+            self.bgcolor,
         )
 
         box = img.getbbox()
         draw = ImageDraw.Draw(img)
         bwidth = 0
-        if card.bordercolor is not None:
-            bwidth = mm_to_pixel(card.borderwidth)
-            draw.rectangle(box, fill=card.bordercolor)
+        if self.bordercolor is not None:
+            bwidth = mm_to_pixel(self.borderwidth)
+            draw.rectangle(box, fill=self.bordercolor)
             draw.rectangle((bwidth, bwidth, box[2] - bwidth, box[3] - bwidth), fill="white")
         width = box[2] - 2 * bwidth
 
-        size = card.fontsize
         last = bwidth
-        for rich in card.texts:
+        for i, rich in enumerate(self.texts, 1):
             if rich is None:
                 continue
-            rich.update(card.__class__.__dict__)
-            rich.update(card.__dict__)
-            font = ImageFont.truetype("serif.ttf", rich.size if "size" in rich else size)
+            rich.update(self.__class__.__dict__)
+            rich.update(self.__dict__)
+            font = self.get_font_rich(i, rich)
             last += mm_to_pixel(rich.margin_up)
             for subline in _wrap_line(rich.text, width, draw, font):
                 w, h = draw.textsize(subline, font=font)
@@ -121,6 +127,8 @@ class BaseCard(object):
                 last = last + h + mm_to_pixel(rich.interspacing)
             last -= mm_to_pixel(rich.interspacing)
             last += mm_to_pixel(rich.margin_down)
+
+        img = self.post_rendering(img, bwidth=bwidth, last=last)
 
         return img
 
