@@ -1,13 +1,27 @@
+from functools import total_ordering
 import os, os.path
 import tempfile
 import re
-from itertools import izip, count
+from itertools import count
 from copy import copy
 import textwrap
 
 from PIL import Image, ImageDraw, ImageFont
 
+def memo_last(f):
+    cache = {}
 
+    def memf(*x):
+        if x not in cache:
+            cache.clear()
+            cache[x] = f(*x)
+            return cache[x]
+        return cache[x]
+
+    return memf
+
+
+@total_ordering
 class RichText(dict):
     default_margin_down = 0
     default_margin_up = 3
@@ -24,7 +38,11 @@ class RichText(dict):
     def __getattr__(self, key):
         return self[key]
 
+    def __lt__(self, other):
+        return self["text"] < other["text"]
 
+
+@total_ordering
 class BaseCard(object):
     max_width = 30  # 30mm
     max_heigth = 40  # 40mm
@@ -39,7 +57,10 @@ class BaseCard(object):
         pass
 
     def __mul__(self, integer):
-        return [self for i in xrange(integer)]
+        return [self for i in range(integer)]
+
+    def __lt__(self, other):
+        return self.texts < other.texts
 
     @property
     def texts(self):
@@ -63,6 +84,46 @@ class BaseCard(object):
             listtexts[index] = value
         return listtexts
 
+    @memo_last
+    def create_image(card):
+        def mm_to_pixel(mm):
+            dpi = 72
+            dpcm = dpi / 2.54
+            return int(mm * dpcm)
+
+        img = Image.new(
+            "RGBA",
+            (mm_to_pixel(card.max_width), mm_to_pixel(card.max_heigth)),
+            card.bgcolor,
+        )
+
+        box = img.getbbox()
+        draw = ImageDraw.Draw(img)
+        bwidth = 0
+        if card.bordercolor is not None:
+            bwidth = mm_to_pixel(card.borderwidth)
+            draw.rectangle(box, fill=card.bordercolor)
+            draw.rectangle((bwidth, bwidth, box[2] - bwidth, box[3] - bwidth), fill="white")
+        width = box[2] - 2 * bwidth
+
+        size = card.fontsize
+        last = bwidth
+        for rich in card.texts:
+            if rich is None:
+                continue
+            rich.update(card.__class__.__dict__)
+            rich.update(card.__dict__)
+            font = ImageFont.truetype("serif.ttf", rich.size if "size" in rich else size)
+            last += mm_to_pixel(rich.margin_up)
+            for subline in _wrap_line(rich.text, width, draw, font):
+                w, h = draw.textsize(subline, font=font)
+                draw.text(((box[2] - w) / 2, last), subline, fill="black", font=font)
+                last = last + h + mm_to_pixel(rich.interspacing)
+            last -= mm_to_pixel(rich.interspacing)
+            last += mm_to_pixel(rich.margin_down)
+
+        return img
+
 
 def create_pdf(l, fname="out.pdf"):
     from fpdf import FPDF
@@ -72,7 +133,7 @@ def create_pdf(l, fname="out.pdf"):
     last_x = 0  # mm
     last_y = 0
     for i, card in enumerate(sorted(l), 1):
-        img = create_image(card)
+        img = card.create_image()
         with tempfile.NamedTemporaryFile(suffix=".png") as temp_f:
             img.save(temp_f.name, "PNG", dpi=(72, 72))
             if last_x + card.max_width >= pdf.w:
@@ -94,7 +155,7 @@ def create_images(l, directory=".", prefix="card-"):
         raise IOError("not a valid path: %s" % directory)
 
     for i, card in enumerate(sorted(l), 1):
-        img = create_image(card)
+        img = card.create_image()
         card_prefix = getattr(card, "file_prefix", prefix)
         fname = os.path.join(directory, "%s%03d.png" % (card_prefix, i))
         img.save(fname, "PNG", dpi=(72, 72))
@@ -118,55 +179,4 @@ def _wrap_line(text, width, draw, font):
     return lines
 
 
-def memo_last(f):
-    cache = {}
 
-    def memf(*x):
-        if x not in cache:
-            cache.clear()
-            cache[x] = f(*x)
-            return cache[x]
-        return cache[x]
-
-    return memf
-
-
-@memo_last
-def create_image(card):
-    def mm_to_pixel(mm):
-        dpi = 72
-        dpcm = dpi / 2.54
-        return int(mm * dpcm)
-
-    img = Image.new(
-        "RGBA",
-        (mm_to_pixel(card.max_width), mm_to_pixel(card.max_heigth)),
-        card.bgcolor,
-    )
-
-    box = img.getbbox()
-    draw = ImageDraw.Draw(img)
-    bwidth = 0
-    if card.bordercolor is not None:
-        bwidth = mm_to_pixel(card.borderwidth)
-        draw.rectangle(box, fill=card.bordercolor)
-        draw.rectangle((bwidth, bwidth, box[2] - bwidth, box[3] - bwidth), fill="white")
-    width = box[2] - 2 * bwidth
-
-    size = card.fontsize
-    last = bwidth
-    for rich in card.texts:
-        if rich is None:
-            continue
-        rich.update(card.__class__.__dict__)
-        rich.update(card.__dict__)
-        font = ImageFont.truetype("serif.ttf", rich.size if "size" in rich else size)
-        last += mm_to_pixel(rich.margin_up)
-        for subline in _wrap_line(rich.text, width, draw, font):
-            w, h = draw.textsize(subline, font=font)
-            draw.text(((box[2] - w) / 2, last), subline, fill="black", font=font)
-            last = last + h + mm_to_pixel(rich.interspacing)
-        last -= mm_to_pixel(rich.interspacing)
-        last += mm_to_pixel(rich.margin_down)
-
-    return img
