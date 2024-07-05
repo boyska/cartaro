@@ -1,0 +1,26 @@
+<div class="card card-tipo--{{tipo}} card-fase--{{fase}}">
+    <h1 class="{% if effetto|length > 10 %}small{%endif %} small-{{effetto|length // 10}}">{{effetto}}</h1>
+    <div class="costo-risorse">
+        {% for c in costo %}
+        {{c}}
+        {% endfor %}
+    </div>
+    {% if gratiscon %}
+    <div class="costo-gratiscon">
+        {% for carta in gratiscon %}
+        {{carta}}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="nome">{{text2|title}}</div>
+    {% if abilita %}
+    <div class="abilita">
+        {% for carta in abilita %}
+        {{carta|title}}<br/>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="giocatori">{{giocatori}}+</div>
+    <div class="fase">{{fase}}</div>
+</div>
+

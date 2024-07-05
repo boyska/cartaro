@@ -1,0 +1,67 @@
+.card {
+    font-family: sans-serif;
+    border: 5mm solid black;
+    width: 65mm;
+    height: 70mm;
+    margin: 5mm;
+    display: inline-block;
+    position: relative;
+}
+.card-tipo--gilda { border-color: purple; }
+.card-tipo--scienza { border-color: green; }
+.card-tipo--militare { border-color: red; }
+.card-tipo--civile { border-color: blue; }
+.card-tipo--commerciale { border-color: yellow; }
+.card-tipo--risorsa { border-color: #571717; }
+.card-tipo--manufatti { border-color: gray; }
+
+h1 {
+    position: absolute;
+    top: 10mm;
+    left: 20mm;
+    font-size: 5mm;
+}
+h1.small {
+    font-size: 10px;
+    font-weight: normal;
+}
+.nome {
+    /* transform: rotate(-90deg); */
+    writing-mode: sideways-lr;
+    position: absolute;
+    bottom: 0mm;
+    left: 0;
+    max-height: 9em;
+    font-size: 4mm;
+}
+.costo-risorse {
+    /* transform: rotate(90deg); */
+    position: absolute;
+    top: 0mm;
+    left: 1mm;
+    border: 1px solid lightgray;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+}
+.costo-gratiscon {
+    /* transform: rotate(90deg); */
+    position: absolute;
+    top: 0mm;
+    left: 8mm;
+    border: 1px solid lightgray;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+}
+.abilita {
+    /* transform: rotate(-90deg); */
+    writing-mode: sideways-lr;
+    position: absolute;
+    bottom: 0mm;
+    right: 0;
+    max-height: 12em;
+    font-size: 4mm;
+}
+h1 {
+    text-align: center;
+}
+

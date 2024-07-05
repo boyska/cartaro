@@ -1,0 +1,165 @@
+{"fase":
+    {
+        "1":
+        [
+            {"#": 2, "titolo": "Mercato", "tipo": "commerciale", "giocatori": [3,6],
+                "effetto": "commerci a 1$ per Vetro,Seta,Papiro a SX e DX", "abilita": ["Caravanserraglio"]},
+            {"#": 2, "titolo": "Stazione commerciale est", "tipo": "commerciale", "giocatori": [3,7],
+                "effetto": "commerci a 1$ per Argilla,Ferro,Legno,Oro a DX", "abilita": ["Foro"]},
+            {"#": 2, "titolo": "Stazione commerciale ovest", "tipo": "commerciale", "giocatori": [3,7],
+                "effetto": "commerci a 1$ per Argilla,Ferro,Legno,Oro a SX", "abilita": ["Foro"]},
+            {"#": 3, "titolo": "Taverna", "tipo": "commerciale", "effetto": "5$", "giocatori": [4,5,7]},
+
+            {"#": 2, "titolo": "Caserma", "tipo": "militare", "effetto": "1militare", "costo": ["1Oro"], "giocatori": [3,5]},
+            {"#": 2, "titolo": "Torre di guardia", "tipo": "militare", "effetto": "1militare", "costo": ["1Argilla"], "giocatori": [3,4]},
+            {"#": 2, "titolo": "Palizzata", "tipo": "militare", "effetto": "1militare", "costo": ["1Legno"], "giocatori": [3,7]},
+
+            {"#": 2, "titolo": "Altare", "tipo": "civile", "effetto": "2PV", "abilita": ["Tempio"], "giocatori": [3,5]},
+            {"#": 2, "titolo": "Bagni", "effetto": "3PV", "costo": ["1Ferro"], "abilita": ["Acquedotto"], "tipo": "civile", "giocatori": [3,7]},
+            {"#": 2, "titolo": "Banco dei pegni", "tipo": "civile", "effetto": "3PV", "giocatori": [4,7]},
+            {"#": 2, "titolo": "Teatro", "tipo": "civile", "effetto": "2PV", "abilita": ["Statua"], "giocatori": [3,6]},
+
+            {"#": 2, "titolo": "Filanda", "tipo": "manufatti", "effetto": "1Seta", "giocatori": [3,6]},
+            {"#": 2, "titolo": "Stamperia", "tipo": "manufatti", "effetto": "1Papiro", "giocatori": [3,6]},
+            {"#": 2, "titolo": "Vetreria", "tipo": "manufatti", "effetto": "1Vetro", "giocatori": [3,6]},
+
+            {"#": 2, "titolo": "Farmacia", "tipo": "scienza", "effetto": "1compasso", "abilita": ["Scuderie", "Ambulatorio"], "costo": ["1Papiro"], "giocatori": [3,5]},
+            {"#": 2, "titolo": "Opificio", "tipo": "scienza", "effetto": "1ruota", "abilita": ["Laboratorio", "Poligono di tiro"], "costo": ["1Vetro"], "giocatori": [3,7]},
+            {"#": 2, "titolo": "Scrittorio", "tipo": "scienza", "abilita": ["Tribunale", "Biblioteca"], "costo": ["1Papiro"], "effetto": "1scrittura", "giocatori": [3,4]},
+
+            {"#": 2, "titolo": "Bacino d'Argilla", "tipo": "risorsa", "effetto": "1argilla", "giocatori": [3,5]},
+            {"#": 2, "titolo": "Cantiere d'abbattimento", "tipo": "risorsa", "effetto": "1Legno", "giocatori": [3,4]},
+            {"#": 2, "titolo": "Cava di pietra", "tipo": "risorsa", "effetto": "1Ferro", "giocatori": [3,5]},
+            {"titolo": "Deposito legname", "tipo": "risorsa", "costo": "1$", "effetto": "1Ferro o 1Legno", "giocatori": [3]},
+            {"#": 2, "titolo": "Filone minerario", "tipo": "risorsa", "effetto": "1Oro", "giocatori": [3,4]},
+            {"titolo": "Fossa d'Argilla", "tipo": "risorsa", "costo": "1$", "effetto": "1argilla o 1Oro", "giocatori": [3]},
+            {"titolo": "Giacimento", "tipo": "risorsa", "effetto": "1Legno o 1Oro", "costo": ["1$"], "giocatori": [5]},
+            {"titolo": "Miniera", "tipo": "risorsa", "costo": "1$", "effetto": "1Ferro o 1Oro", "giocatori": [6]},
+            {"titolo": "Scavi", "tipo": "risorsa", "costo": "1$", "effetto": "1Ferro o 1Argilla", "giocatori": [4]},
+            {"titolo": "Vivaio", "tipo": "risorsa", "effetto": "1Legno o 1Argilla", "costo": ["1$"], "giocatori": [6]},
+
+
+
+
+            {}
+        ],
+        "2":
+        [
+
+            {"#": 2, "tipo": "commerciale", "titolo": "Bazar", "effetto": "2$ per ogni carta grigia nella tua città o in quelle confinanti", "giocatori":[4,7]},
+            {"#": 3, "tipo": "commerciale", "titolo": "Caravanserraglio", "effetto": "Legno o Ferro o Oro o Argilla", "costo": ["2Legno"],
+                "gratiscon": ["Mercato"], "abilita": ["Faro"], "giocatori":[3,5,6]},
+            {"#": 3, "tipo": "commerciale", "titolo": "Foro", "effetto": "Vetro o Seta o Papiro", "costo": ["2Argilla"],
+                "gratiscon": ["Stazione Commerciale"], "abilita": ["Porto"], "giocatori":[3,6,7]},
+            {"#": 2, "tipo": "commerciale", "titolo": "Vigneto", "effetto": "marrone1$ a TE,SX,DX", "giocatori":[3,6]},
+
+
+            {"#": 2, "titolo": "Fonderia", "tipo": "risorsa", "effetto": "2Oro", "costo": ["1$"], "giocatori": [3,4]},
+            {"#": 2, "titolo": "Mattonificio", "tipo": "risorsa", "effetto": "2Argilla", "costo": ["1$"], "giocatori": [3,4]},
+            {"#": 2, "titolo": "Segheria", "tipo": "risorsa", "effetto": "2Legno", "costo": ["1$"], "giocatori": [3,4]},
+            {"#": 2, "titolo": "Tagliapietre", "tipo": "risorsa", "effetto": "2Ferro", "costo": ["1$"], "giocatori": [3,4]},
+
+            {"#": 2, "tipo": "scienza", "titolo": "Ambulatorio", "effetto": "1compasso", "costo": ["2Oro", "1Vetro"],
+                "gratiscon": ["Farmacia"], "abilita": ["Loggia", "Arena"], "giocatori": [3,4] },
+            {"#": 2, "tipo": "scienza", "titolo": "Biblioteca", "effetto": "1scrittura", "costo": ["2Ferro", "1Seta"],
+                "gratiscon": ["Scrittorio"], "abilita": ["Senato", "Università"], "giocatori": [3,6] },
+            {"#": 2, "tipo": "scienza", "titolo": "Laboratorio", "effetto": "1ruota", "costo": ["2Argilla", "1Papiro"],
+                "gratiscon": ["Opificio"], "abilita": ["Osservatorio", "Opificio d'assedio"], "giocatori": [3,5] },
+            {"#": 2, "tipo": "scienza", "titolo": "Scuola", "effetto": "1scrittura", "costo": ["1Legno", "1Papiro"],
+                 "abilita": ["Accademia", "Studio"], "giocatori": [3,7] },
+
+            {"#": 2, "tipo": "civile", "titolo": "Acquedotto", "effetto": "5PV", "costo": ["3Ferro"],
+                "gratiscon": ["Bagni"], "giocatori": [3,7]},
+            {"#": 2, "tipo": "civile", "titolo": "Statua", "effetto": "4PV", "costo": ["2Oro", "1Legno"],
+                "gratiscon": ["Teatro"], "abilita": ["Giardini"], "giocatori": [3,7]},
+            {"#": 2, "tipo": "civile", "titolo": "Tempio", "effetto": "3PV", "costo": ["1Argilla", "1Vetro", "1Legno"],
+                "gratiscon": ["Altare"], "abilita": ["Pantheon"], "giocatori": [3,6]},
+            {"#": 2, "tipo": "civile", "titolo": "Tribunale", "effetto": "4PV", "costo": ["2Argilla", "1Seta"],
+                "gratiscon": ["Scrittorio"], "giocatori": [3,5]},
+
+            {"#": 2, "titolo": "Filanda", "tipo": "manufatti", "effetto": "1Seta", "giocatori": [3,5]},
+            {"#": 2, "titolo": "Stamperia", "tipo": "manufatti", "effetto": "1Papiro", "giocatori": [3,5]},
+            {"#": 2, "titolo": "Vetreria", "tipo": "manufatti", "effetto": "1Vetro", "giocatori": [3,5]},
+
+            {"#": 2, "titolo": "Mura", "tipo": "militare", "effetto": "2militare", "giocatori": [3,7], "costo": ["3Ferro"], "abilita": ["Fortificazioni"]},
+            {"#": 2, "titolo": "Poligono di tiro", "tipo": "militare", "effetto": "2militare", "costo": ["2Legno", "1Oro"],
+                "gratiscon": ["Opificio"], "giocatori": [3,6]
+            },
+            {"#": 2, "titolo": "Scuderie", "tipo": "militare", "effetto": "2militare", "costo": ["1Argilla", "1Legno", "1Oro"],
+                "gratiscon": ["Farmacia"], "giocatori": [3,5]
+            },
+            {"#": 3, "titolo": "Zona d'addestramento", "tipo": "militare", "effetto": "2militare", "costo": ["2Oro", "1Legno"],
+                "abilita": ["Circo"], "giocatori": [4,6,7] },
+
+            {}
+        ],
+
+
+        "3":
+        [
+
+            {"#": 3, "tipo": "commerciale", "titolo": "Arena", "effetto": "1$ e 3PV per ogni fase Meraviglia",
+                "costo": ["2Ferro", "1Oro"], "gratiscon": ["Ambulatorio"], "giocatori": [3,5,7] },
+            {"#": 2, "tipo": "commerciale", "titolo": "Camera di commercio", "effetto": "2$ e 2PV per ogni tua carta grigia",
+                "costo": ["2Argilla", "1Papiro"], "giocatori": [4,6] },
+            {"#": 2, "tipo": "commerciale", "titolo": "Faro", "effetto": "1$ e 1PV per ogni tua carta gialla",
+                "gratiscon": ["Caravanserraglio"], "costo": ["1Ferro", "1Vetro"], "giocatori": [3,6] },
+            {"#": 2, "tipo": "commerciale", "titolo": "Porto", "effetto": "1$ e 1PV per ogni tua carta marrone",
+                "costo": ["1Legno", "1Oro", "1Seta"], "gratiscon": ["Foro"], "giocatori": [3,4] },
+
+            {"#": 3, "tipo": "militare", "titolo": "Arsenale", "effetto": "3militare",
+                "costo": ["2Legno", "1Oro", "1Seta"], "giocatori": [3,4,7] },
+            {"#": 3, "tipo": "militare", "titolo": "Circo", "effetto": "3militare",
+                "costo": ["3Ferro", "1Oro"], "gratiscon": ["Zona d'addestramento"], "giocatori": [4,5,6] },
+            {"#": 2, "tipo": "militare", "titolo": "Fortificazioni", "effetto": "3militare",
+                "costo": ["1Ferro", "3Oro"], "gratiscon": ["Mura"], "giocatori": [3,7] },
+            {"#": 2, "tipo": "militare", "titolo": "Opificio d'assedio", "effetto": "3militare",
+                "costo": ["3Argilla", "1Legno"], "gratiscon": ["Laboratorio"], "giocatori": [3,5] },
+
+            {"#": 2, "tipo": "civile", "titolo": "Giardini", "effetto": "5PV",
+                "costo": ["1Legno", "2Argilla"], "gratiscon": ["Statua"], "giocatori": [3,4] },
+            {"#": 3, "tipo": "civile", "titolo": "Municipio", "effetto": "6PV",
+                "costo": ["2Ferro", "1Oro", "1Vetro"], "giocatori": [3,5,6] },
+            {"#": 2, "tipo": "civile", "titolo": "Palazzo", "effetto": "8PV",
+                "costo": ["1Ferro", "1Oro", "1Legno", "1Argilla", "1Vetro", "1Papiro", "1Seta"], "giocatori": [3,7]},
+            {"#": 2, "tipo": "civile", "titolo": "Pantheon", "effetto": "7PV",
+                "costo": ["1Oro", "2Argilla", "1Vetro", "1Papiro", "1Seta"], "gratiscon": ["Tempio"], "giocatori": [3,6]},
+            {"#": 2, "tipo": "civile", "titolo": "Senato", "effetto": "6PV",
+                "costo": ["1Ferro", "2Legno", "1Oro"], "gratiscon": ["Biblioteca"], "giocatori": [3,5] },
+
+            {"#": 2, "tipo": "scienza", "titolo": "Accademia", "effetto": "1compasso",
+                "costo": ["3Ferro", "1Vetro"], "gratiscon": ["Scuola"], "giocatori": [3,7]},
+            {"#": 2, "tipo": "scienza", "titolo": "Loggia", "effetto": "1compasso",
+                "costo": ["2Argilla", "1Papiro", "1Seta"], "gratiscon": ["Ambulatorio"], "giocatori": [3,6]},
+            {"#": 2, "tipo": "scienza", "titolo": "Osservatorio", "effetto": "1ruota",
+                "costo": ["2Oro", "1Vetro", "1Seta"], "gratiscon": ["Laboratorio"], "giocatori": [3,7]},
+            {"#": 2, "tipo": "scienza", "titolo": "Studio", "effetto": "1ruota",
+                "costo": ["1Legno", "1Papiro", "1Seta"], "gratiscon": ["Scuola"], "giocatori": [3,5]},
+            {"#": 2, "tipo": "scienza", "titolo": "Università", "effetto": "1scrittura",
+                "costo": ["2Legno", "1Papiro", "1Vetro"], "gratiscon": ["Biblioteca"], "giocatori": [3,4]},
+
+            {"#": 1, "tipo": "gilda", "titolo": "Gilda dei lavoratori", "effetto": "1PV per ogni carta marrone nelle città confinanti",
+                "costo": ["2Oro", "1Argilla", "1Vetro", "1Legno"], "giocatori": [3]},
+            {"#": 1, "tipo": "gilda", "titolo": "Gilda degli artigiani", "effetto": "2PV per ogni carta grigia nelle città confinanti",
+                "costo": ["2Oro",  "2Ferro"], "giocatori": [3]},
+            {"#": 1, "tipo": "gilda", "titolo": "Gilda dei mercanti", "effetto": "1PV per ogni carta gialla nelle città confinanti",
+                "costo": ["1Papiro", "1Vetro", "1Seta"], "giocatori": [3]},
+            {"#": 1, "tipo": "gilda", "titolo": "Gilda dei costruttori", "effetto": "1PV per ogni fase meraviglia nella propria città e nelle città confinanti",
+                "costo": ["2Ferro", "2Argilla", "1Vetro"], "giocatori": [3]},
+            {"#": 1, "tipo": "gilda", "titolo": "Gilda degli strateghi", "effetto": "1PV per ogni gettone sconfitta nelle città confinanti",
+                "costo": ["2Oro", "1Ferro", "1Seta"], "giocatori": [3]},
+            {"#": 1, "tipo": "gilda", "titolo": "Gilda dei magistrati", "effetto": "1PV per ogni carta blu nelle città confinanti",
+                "costo": ["3Legno", "1Ferro", "1Seta"], "giocatori": [3]},
+            {"#": 1, "tipo": "gilda", "titolo": "Gilda degli scienziati", "effetto": "Un simbolo scientifico extra a tua scelta",
+                "costo": ["2Legno", "2Oro", "1Papiro"], "giocatori": [3]},
+            {"#": 1, "tipo": "gilda", "titolo": "Gilda degli armatori", "effetto": "1PV per ogni carta marrone, grigia o viola nella propria città",
+                "costo": ["3Legno", "1Vetro", "1Papiro"], "giocatori": [3]},
+            {"#": 1, "tipo": "gilda", "titolo": "Gilda delle spie", "effetto": "1PV per ogni carta rossa nelle città confinanti",
+                "costo": ["3Argilla", "1Vetro"], "giocatori": [3]},
+            {"#": 1, "tipo": "gilda", "titolo": "Gilda dei filosofi", "effetto": "1PV per ogni carta verde nelle città confinanti",
+                "costo": ["3Argilla", "1Seta", "1Papiro"], "giocatori": [3]},
+
+            {}
+        ]
+    }
+}
