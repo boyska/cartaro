@@ -114,7 +114,7 @@ class BaseCard(object):
         width = box[2] - 2 * bwidth
 
         last = bwidth
-        for i, rich in enumerate(self.texts, 1):
+        for i, rich in enumerate(self.texts, 0):
             if rich is None:
                 continue
             rich.update(self.__class__.__dict__)
